@@ -52,7 +52,7 @@ li {
 }
 
 header {
-    @apply border-b border-b-black/10 fixed lg:sticky top-0 lg:w-full flex flex-col lg:flex-row lg:justify-between py-6 max-w-7xl px-4 lg:px-0 lg:mx-auto bg-white/60 backdrop-blur-xl z-10 left-0 right-0;
+    @apply fixed lg:sticky top-0 lg:w-full flex flex-col lg:flex-row lg:justify-between py-4 max-w-7xl px-4 lg:px-0 lg:mx-auto bg-white z-10 left-0 right-0;
 
     .nav-header {
         @apply flex justify-between items-center p-4 relative z-10 w-full;
@@ -131,6 +131,11 @@ header {
     .nav-item:hover .nav-dropdown {
         @apply block;
     }
+}
+
+header::after {
+    content: "";
+    @apply absolute left-0 right-0 top-full h-2 backdrop-blur-xl -z-1;
 }
 
 footer {

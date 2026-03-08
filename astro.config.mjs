@@ -11,24 +11,27 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   // UPDATE THIS FOR PRODUCTION – This will also be used in the sitemap
   site: process.env.PRODUCTION_DOMAIN || "http://localhost:4321",
-
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/compile",
+    },
+  },
   integrations: [
-      mdx(),
-      sitemap({
-          customPages: [
-              process.env.PRODUCTION_DOMAIN || "http://localhost:4321", // home page - priority 1.0
-              (process.env.PRODUCTION_DOMAIN || "http://localhost:4321") +
-                  "/sl/", // Slovenian home - priority 1.0
-          ],
-          changefreq: "monthly",
-          priority: 0.7,
-          lastmod: new Date(),
-      }),
-      svelte(),
+    mdx(),
+    sitemap({
+      customPages: [
+        process.env.PRODUCTION_DOMAIN || "http://localhost:4321", // home page - priority 1.0
+        (process.env.PRODUCTION_DOMAIN || "http://localhost:4321") + "/sl/", // Slovenian home - priority 1.0
+      ],
+      changefreq: "monthly",
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    svelte(),
   ],
 
   vite: {
-      plugins: [tailwindcss()],
+    plugins: [tailwindcss()],
   },
 
   adapter: cloudflare(),
